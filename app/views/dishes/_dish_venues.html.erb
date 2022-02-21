@@ -1,0 +1,17 @@
+<div class="card">
+  <div class="card-header d-flex align-items-center justify-content-between">
+    Venues
+  </div>
+
+  <ul class="list-group list-group-flush">
+    <% @dish.venues.each do |venue| %>
+      <li class="list-group-item d-flex align-items-center justify-content-between">
+        <a href="/venues/<%= venue.id %>">
+          <%= venue %>
+        </a>
+
+      </li>
+    <% end %>
+
+  </ul>
+</div>

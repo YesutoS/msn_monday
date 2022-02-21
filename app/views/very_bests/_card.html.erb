@@ -1,0 +1,52 @@
+<div class="card mb-3">
+  <h2 class="card-header h4">
+    Very Best #<%= very_best.id %>
+  </h2>
+
+  <div class="card-body">
+    <dl class="mb-1">
+      <dt>Notes</dt>
+      <dd><%= very_best.notes %></dd>
+
+      <dt>Dish</dt>
+      <dd>
+        <% if @very_best.entree.present? %>
+          <%= link_to very_best.entree, very_best.entree %>
+        <% end %>
+      </dd>
+
+      <dt>Venue</dt>
+      <dd>
+        <% if @very_best.venue.present? %>
+          <%= link_to very_best.venue, very_best.venue %>
+        <% end %>
+      </dd>
+
+      <dt>User</dt>
+      <dd><%= very_best.user_id %></dd>
+
+    </dl>
+
+    <div class="row">
+      <div class="col">
+        <%= link_to_show_or_back very_best, '<i class="fas fa-search-plus"></i>'.html_safe, '<i class="fas fa-chevron-left"></i>'.html_safe, class: "btn btn-block btn-outline-secondary" %>
+      </div>
+
+      <div class="col">
+        <%= link_to edit_very_best_url(very_best), class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-edit"></i>
+        <% end %>
+      </div>
+
+      <div class="col">
+        <%= link_to very_best, method: :delete, data: { confirm: "Do you really want to delete this very_best?" }, class: "btn btn-block btn-outline-secondary" do %>
+          <i class="fas fa-trash-alt"></i>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer text-muted">
+    Last updated <%= time_ago_in_words(very_best.updated_at) %> ago
+  </div>
+</div>

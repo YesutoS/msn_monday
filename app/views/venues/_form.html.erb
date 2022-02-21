@@ -1,0 +1,71 @@
+<% was_validated = venue.errors.any? %>
+
+<%= form_with(model: venue, local: true, novalidate: true, class: "mb-3") do |f| %>
+  <div class="form-group">
+    <% name_class = "form-control" %>
+    <% name_was_invalid = venue.errors.include?(:name) %>
+
+    <% if was_validated %>
+      <% if name_was_invalid %>
+        <% name_class << " is-invalid" %>
+      <% else %>
+        <% name_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :name %>
+    <%= f.text_field :name, class: name_class, placeholder: "Enter name" %>
+    <% if name_was_invalid %>
+      <% venue.errors.full_messages_for(:name).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% address_class = "form-control" %>
+    <% address_was_invalid = venue.errors.include?(:address) %>
+
+    <% if was_validated %>
+      <% if address_was_invalid %>
+        <% address_class << " is-invalid" %>
+      <% else %>
+        <% address_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :address %>
+    <%= f.text_field :address, class: address_class, placeholder: "Enter address" %>
+    <% if address_was_invalid %>
+      <% venue.errors.full_messages_for(:address).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="form-group">
+    <% neighborhood_class = "form-control" %>
+    <% neighborhood_was_invalid = venue.errors.include?(:neighborhood) %>
+
+    <% if was_validated %>
+      <% if neighborhood_was_invalid %>
+        <% neighborhood_class << " is-invalid" %>
+      <% else %>
+        <% neighborhood_class << " is-valid" %>
+      <% end %>
+    <% end %>
+
+    <%= f.label :neighborhood_id %>
+    <%= f.collection_select :neighborhood_id, Neighborhood.all, :id, :to_s, {}, class: "form-control" %>
+    <% if neighborhood_was_invalid %>
+      <% venue.errors.full_messages_for(:neighborhood).each do |message| %>
+        <div class="invalid-feedback d-flex">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <%= f.button class: "btn btn-outline-secondary btn-block" %>
+<% end %>
