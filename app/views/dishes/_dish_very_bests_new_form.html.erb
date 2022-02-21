@@ -1,0 +1,24 @@
+<%= form_with(model: @very_best, local: true) do |f| %>
+
+  <div class="form-group">
+    <%= f.label :notes %>
+
+    <%= f.text_field :notes, class: "form-control" %>
+  </div>
+
+  <%= f.hidden_field :dish_id, value: @dish.id %>
+
+  <div class="form-group">
+    <%= f.label :venue_id %>
+
+    <%= f.collection_select :venue_id, User.all, :id, :to_s, {}, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :user_id %>
+
+    <%= f.text_field :user_id, class: "form-control" %>
+  </div>
+
+  <%= f.submit "Create very best", class: "btn btn-block btn-outline-secondary" %>
+<% end %>
