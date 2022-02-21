@@ -23,7 +23,11 @@
       </dd>
 
       <dt>User</dt>
-      <dd><%= very_best.user_id %></dd>
+      <dd>
+        <% if @very_best.user.present? %>
+          <%= link_to very_best.user, very_best.user %>
+        <% end %>
+      </dd>
 
     </dl>
 
@@ -33,14 +37,18 @@
       </div>
 
       <div class="col">
-        <%= link_to edit_very_best_url(very_best), class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-edit"></i>
+        <% if current_user == @very_best.user %>
+          <%= link_to edit_very_best_url(very_best), class: "btn btn-block btn-sm btn-outline-secondary" do %>
+            <i class="fas fa-edit"></i>
+          <% end %>
         <% end %>
       </div>
 
       <div class="col">
-        <%= link_to very_best, method: :delete, data: { confirm: "Do you really want to delete this very_best?" }, class: "btn btn-block btn-outline-secondary" do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == @very_best.user %>
+          <%= link_to very_best, method: :delete, data: { confirm: "Do you really want to delete this very_best?" }, class: "btn btn-block btn-outline-secondary" do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
       </div>
     </div>

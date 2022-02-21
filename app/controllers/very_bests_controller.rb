@@ -1,10 +1,13 @@
 class VeryBestsController < ApplicationController
+  before_action :current_user_must_be_very_best_user,
+                only: %i[edit update destroy]
+
   before_action :set_very_best, only: %i[show edit update destroy]
 
   def index
     @q = VeryBest.ransack(params[:q])
-    @very_bests = @q.result(distinct: true).includes(:entree, :dish,
-                                                     :venue).page(params[:page]).per(10)
+    @very_bests = @q.result(distinct: true).includes(:entree, :venue,
+                                                     :user).page(params[:page]).per(10)
   end
 
   def show; end
@@ -49,6 +52,14 @@ class VeryBestsController < ApplicationController
   end
 
   private
+
+  def current_user_must_be_very_best_user
+    set_very_best
+    unless current_user == @very_best.user
+      redirect_back fallback_location: root_path,
+                    alert: "You are not authorized for that."
+    end
+  end
 
   def set_very_best
     @very_best = VeryBest.find(params[:id])

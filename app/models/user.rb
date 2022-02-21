@@ -3,7 +3,6 @@ class User < ApplicationRecord
   # Direct associations
 
   has_many   :very_bests,
-             foreign_key: "venue_id",
              dependent: :destroy
 
   # Indirect associations

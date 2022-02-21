@@ -6,19 +6,15 @@
     <%= f.text_field :notes, class: "form-control" %>
   </div>
 
+  <div class="form-group">
+    <%= f.label :dish_id %>
+
     <%= f.collection_select :dish_id, Dish.all, :id, :to_s, {}, class: "form-control" %>
-
-  <div class="form-group">
-    <%= f.label :venue_id %>
-
-    <%= f.collection_select :venue_id, User.all, :id, :to_s, {}, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :user_id %>
+  <%= f.hidden_field :venue_id, value: @venue.id %>
 
-    <%= f.text_field :user_id, class: "form-control" %>
-  </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
 
   <%= f.submit "Create very best", class: "btn btn-block btn-outline-secondary" %>
 <% end %>

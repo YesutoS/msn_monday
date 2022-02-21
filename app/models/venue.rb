@@ -5,7 +5,6 @@ class Venue < ApplicationRecord
              counter_cache: true
 
   has_many   :very_bests,
-             foreign_key: "dish_id",
              dependent: :destroy
 
   # Indirect associations

@@ -12,8 +12,10 @@
       <li class="list-group-item d-flex align-items-center justify-content-between">
         <%= link_to very_best, very_best %>
 
-        <%= link_to very_best, method: :delete, data: { confirm: "Do you really want to delete this very_best" } do %>
-          <i class="fas fa-trash-alt"></i>
+        <% if current_user == very_best.user %>
+          <%= link_to very_best, method: :delete do %>
+            <i class="fas fa-trash-alt"></i>
+          <% end %>
         <% end %>
 
       </li>

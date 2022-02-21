@@ -9,8 +9,7 @@ class UserResource < ApplicationResource
 
   # Direct associations
 
-  has_many   :very_bests,
-             foreign_key: :venue_id
+  has_many :very_bests
 
   # Indirect associations
 end

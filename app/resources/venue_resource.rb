@@ -10,8 +10,7 @@ class VenueResource < ApplicationResource
 
   belongs_to :neighborhood
 
-  has_many   :very_bests,
-             foreign_key: :dish_id
+  has_many   :very_bests
 
   # Indirect associations
 

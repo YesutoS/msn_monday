@@ -12,13 +12,13 @@
     <%= f.collection_select :dish_id, Dish.all, :id, :to_s, {}, class: "form-control" %>
   </div>
 
-  <%= f.hidden_field :venue_id, value: @user.id %>
-
   <div class="form-group">
-    <%= f.label :user_id %>
+    <%= f.label :venue_id %>
 
-    <%= f.text_field :user_id, class: "form-control" %>
+    <%= f.collection_select :venue_id, Venue.all, :id, :to_s, {}, class: "form-control" %>
   </div>
+
+  <%= f.hidden_field :user_id, value: @user.id %>
 
   <%= f.submit "Create very best", class: "btn btn-block btn-outline-secondary" %>
 <% end %>
