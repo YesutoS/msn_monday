@@ -58,7 +58,7 @@
     <% end %>
 
     <%= f.label :venue_id %>
-    <%= f.collection_select :venue_id, User.all, :id, :to_s, {}, class: "form-control" %>
+    <%= f.collection_select :venue_id, Venue.all, :id, :to_s, {}, class: "form-control" %>
     <% if venue_was_invalid %>
       <% very_best.errors.full_messages_for(:venue).each do |message| %>
         <div class="invalid-feedback d-flex">
@@ -67,27 +67,6 @@
       <% end %>
     <% end %>
   </div>
-  <div class="form-group">
-    <% user_class = "form-control" %>
-    <% user_was_invalid = very_best.errors.include?(:user) %>
-
-    <% if was_validated %>
-      <% if user_was_invalid %>
-        <% user_class << " is-invalid" %>
-      <% else %>
-        <% user_class << " is-valid" %>
-      <% end %>
-    <% end %>
-
-    <%= f.label :user_id %>
-    <%= f.number_field :user_id, class: user_class, placeholder: "Enter user" %>
-    <% if user_was_invalid %>
-      <% very_best.errors.full_messages_for(:user).each do |message| %>
-        <div class="invalid-feedback d-flex">
-          <%= message %>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
+  <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.button class: "btn btn-outline-secondary btn-block" %>
 <% end %>

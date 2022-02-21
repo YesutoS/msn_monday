@@ -1,13 +1,9 @@
 class VeryBest < ApplicationRecord
   # Direct associations
 
-  belongs_to :venue,
-             class_name: "User",
-             counter_cache: true
+  belongs_to :user
 
-  belongs_to :dish,
-             class_name: "Venue",
-             counter_cache: true
+  belongs_to :venue
 
   belongs_to :entree,
              class_name: "Dish",

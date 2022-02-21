@@ -11,7 +11,7 @@ class Dish < ApplicationRecord
 
   has_many   :venues,
              through: :very_bests,
-             source: :dish
+             source: :venue
 
   # Validations
 

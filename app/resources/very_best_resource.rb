@@ -9,11 +9,9 @@ class VeryBestResource < ApplicationResource
 
   # Direct associations
 
-  belongs_to :venue,
-             resource: UserResource
+  belongs_to :user
 
-  belongs_to :dish,
-             resource: VenueResource
+  belongs_to :venue
 
   belongs_to :entree,
              resource: DishResource,
